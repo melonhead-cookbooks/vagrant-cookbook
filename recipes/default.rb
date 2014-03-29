@@ -32,3 +32,14 @@ node['vagrant']['plugins'].each do |plugin|
 
   end
 end
+
+
+node['vagrant']['boxes'].each do |box|
+  if box.respond_to?(:keys)
+    vagrant_box box['name'] do
+      version box['version']
+    end
+  else
+    vagrant_box box
+  end
+end

@@ -18,7 +18,8 @@ action :install do
       "--plugin-version #{new_resource.version}" if new_resource.version
 
     shell_out(
-      "vagrant plugin install #{new_resource.plugin_name} #{plugin_args}"
+      "vagrant plugin install #{new_resource.plugin_name} #{plugin_args}",
+      user => node[:user]
       )
     new_resource.updated_by_last_action(true)
   end

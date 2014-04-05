@@ -16,7 +16,7 @@ action :install do
     box_args += "#{new_resource.uri}" if new_resource.uri
     shell_out(
       "vagrant box add #{new_resource.box_name} #{box_args}",
-      :user => new_resource.user 
+      :user => new_resource.user
       )
     new_resource.updated_by_last_action(true)
   end

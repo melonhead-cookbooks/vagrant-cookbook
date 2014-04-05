@@ -24,11 +24,14 @@ node['vagrant']['plugins'].each do |plugin|
 
     vagrant_plugin plugin['name'] do
       version plugin['version']
+      user node['current_user']
     end
 
   else
 
-    vagrant_plugin plugin
+    vagrant_plugin plugin do
+      user node['current_user']
+    end
 
   end
 end
@@ -37,6 +40,7 @@ node['vagrant']['boxes'].each do |box|
   if box.respond_to?(:keys)
     vagrant_box box['name'] do
       uri box['uri']
+      user node['current_user']
     end
   end
 end

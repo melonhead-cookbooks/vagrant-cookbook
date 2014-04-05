@@ -19,7 +19,7 @@ action :install do
 
     shell_out(
       "vagrant plugin install #{new_resource.plugin_name} #{plugin_args}",
-      user => node[:user]
+      user => "#{node[current_user]}"
       )
     new_resource.updated_by_last_action(true)
   end
